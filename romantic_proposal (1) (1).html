@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I Love You</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+      color: #fff;
+    }
+    .slide-container {
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+    }
+    .slide {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      padding: 2rem;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    .flower {
+      position: absolute;
+      top: -50px;
+      width: 30px;
+      height: 30px;
+      font-size: 24px;
+      animation: fall 10s linear infinite;
+    }
+    @keyframes fall {
+      0% {transform: translateY(0) rotate(0deg);}
+      100% {transform: translateY(100vh) rotate(360deg);}
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2023/03/27/audio_b53fbf64fd.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="slide-container">
+    <div class="slide active">There’s a calm in my chaos every time I think of you.</div>
+    <div class="slide">You don’t know it yet, but you’ve been living in my heart for a while now.</div>
+    <div class="slide">Every version of love I imagined—starts with your smile.</div>
+    <div class="slide">I don’t want to rush... I just want to be close to your soul, quietly.</div>
+    <div class="slide">Maybe, one day, you’ll look at me the way I already look at you.</div>
+    <div class="slide">Will you be mine, please Ayesha? I love you so much.</div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 4000);
+
+    // Generate falling flowers (🌹 and 🌺)
+    const emojis = ['🌹', '🌺'];
+    function createFlower() {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = 5 + Math.random() * 5 + 's';
+      flower.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      document.body.appendChild(flower);
+
+      setTimeout(() => flower.remove(), 10000);
+    }
+    setInterval(createFlower, 300);
+  </script>
+</body>
+</html>
